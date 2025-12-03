@@ -1,0 +1,29 @@
+# Clojure
+.cpcache/
+.nrepl-port
+*.jar
+*.class
+
+# Editor/IDE
+.idea/
+*.iml
+.vscode/
+.calva/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Project specific
+target/
+classes/
+out/
+
+# Logs
+*.log
+
+# Local development
+.env
+.env.local
+dev/user.clj
+
