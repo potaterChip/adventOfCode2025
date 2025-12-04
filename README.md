@@ -1,6 +1,20 @@
-# 🎄 Advent of Code 2025
+# Advent of Code 2025
 
-My solutions for [Advent of Code 2025](https://adventofcode.com/2025), written in **Clojure** as a learning adventure!
+My solutions for [Advent of Code 2025](https://adventofcode.com/2025), written in **Clojure** as an added challenge since I don't know anything about Clojure really.
+
+## AI Note
+
+I'm using AI to help define the Clojure project. If I didn't, I'd probably never finish (I'll still probably not finish).
+In fact, you can probably tell there's a bunch of AI slop all over this README. I might clean it up later, but also I probably won't.
+
+I will not be using AI to solve any of the puzzles. I will be using AI to help with Clojure specific functions. For example, helping me write a function that
+reads a file. Giving me hints on how to properly format string values. etc.
+
+In this README itself, extra Clojure info will be prefaced with an 'Eric noob clojure note', and will contain probably a lot of info regular Clojure users would laugh at (could possibly be completely wrong too) Like below
+
+#### Eric noob clojure note
+
+The deps.edn is a Clojure standard. EDN (Extensible Data Notation) is built with Clojure itself. Clojure all the way down. `clj` specifically looks for the deps.edn file. Other edn files are just data files not auto picked up
 
 ## Prerequisites
 
@@ -8,11 +22,17 @@ My solutions for [Advent of Code 2025](https://adventofcode.com/2025), written i
 - Java 11+ (OpenJDK or similar)
 
 ### macOS Installation
+
 ```bash
 brew install clojure/tools/clojure
 ```
 
+### Windows Installation
+
+lol
+
 ### Verify Installation
+
 ```bash
 clj --version
 ```
@@ -27,9 +47,9 @@ clj --version
 │       ├── core.clj   # Shared utilities and runner
 │       └── day01.clj  # Day 1 solution (and so on...)
 ├── inputs/
-│   └── day01.txt      # Puzzle inputs (not committed)
+│   └── day01.txt      # Puzzle inputs
 └── test/
-    └── aoc/           # Tests (optional)
+    └── aoc/           # Tests
 ```
 
 ## Usage
@@ -43,6 +63,18 @@ clj -X:run :day 1
 # Or using main function
 clj -M -m aoc.core 1
 ```
+
+#### Eric noob clojure note
+
+-X means execute a function. What comes after the colon is the name of the function, or in this case a function alias. You can see that 'run' is defined in the deps.edn file. You can still run a function directly if you want:
+
+```bash
+clj -X aoc.core/run-day :day 1
+```
+
+-M is just 'main' or 'classpath' mode. If you look at the 'dev' alias, that's not a function (doesn't use the :exec-fn keyword ["keyword" is essentially anything in Clojure begining with a ':'] so you wouldn't use -X)
+
+However, even if you don't specify anything extra after -M, apparently you still need to specify it. Then you add the extra -m, which is actually pointing to the namespace/file that contains your main function.
 
 ### REPL-Driven Development (Recommended!)
 
@@ -58,70 +90,15 @@ clj
 
 If using VS Code + Calva, Emacs + CIDER, or IntelliJ + Cursive, connect to the REPL from your editor for the best experience.
 
-### Running Tests
+##### Eric noon clojure note
 
-```bash
-clj -X:test
+The actual dev alias is
+
+```
+{:dev {:extra-deps {nrepl/nrepl {:mvn/version "1.3.0"}
+                     cider/cider-nrepl {:mvn/version "0.50.2"}}}
 ```
 
-## Puzzle Inputs
+So you're just using -M here to add some extra dependencies, and then -m is specifying a main class in the nrepl space.
 
-Place your puzzle inputs in the `inputs/` directory:
-- `inputs/day01.txt`
-- `inputs/day02.txt`
-- etc.
-
-**Note:** Puzzle inputs are personal and should not be shared publicly (hence gitignored).
-
-## Quick Clojure Reference
-
-```clojure
-;; Reading input
-(slurp "inputs/day01.txt")           ; Read file as string
-(clojure.string/split s #"\n")       ; Split into lines
-(map parse-long ["1" "2" "3"])       ; Parse strings to numbers
-
-;; Common operations
-(reduce + [1 2 3 4 5])               ; Sum: 15
-(filter even? (range 10))            ; (0 2 4 6 8)
-(map inc [1 2 3])                    ; (2 3 4)
-(into {} [[:a 1] [:b 2]])            ; {:a 1, :b 2}
-(frequencies "aabbbc")               ; {\a 2, \b 3, \c 1}
-
-;; Destructuring
-(let [[a b & rest] [1 2 3 4 5]]      ; a=1, b=2, rest=(3 4 5)
-  ...)
-
-;; Threading macros (very useful!)
-(->> input                           ; Thread-last
-     (map parse-long)
-     (filter pos?)
-     (reduce +))
-
-(-> data                             ; Thread-first
-    :some-key
-    (get 0)
-    inc)
-```
-
-## Progress
-
-| Day | Part 1 | Part 2 | Notes |
-|-----|--------|--------|-------|
-| 1   | ⬜     | ⬜     |       |
-| 2   | ⬜     | ⬜     |       |
-| 3   | ⬜     | ⬜     |       |
-| ... | ...    | ...    |       |
-
-Legend: ⭐ Solved | ⬜ Not started | 🔄 In progress
-
-## Resources
-
-- [Clojure Documentation](https://clojure.org/reference/documentation)
-- [ClojureDocs](https://clojuredocs.org/) - Community examples
-- [Clojure Cheatsheet](https://clojure.org/api/cheatsheet)
-- [4Clojure](https://4clojure.oxal.org/) - Practice problems
-- [Advent of Code](https://adventofcode.com/2025)
-
-Happy coding! 🎅
-
+Also, I love VS Code, so I'm using the Calva extension

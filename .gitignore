@@ -3,6 +3,7 @@
 .nrepl-port
 *.jar
 *.class
+.clj-kondo/.cache/
 
 # Editor/IDE
 .idea/
